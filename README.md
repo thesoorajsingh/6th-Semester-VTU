@@ -4,4 +4,4 @@
 
 ## Feel free to make a pull request if you find that something is missing!
 
-![] (cat.gif)
+![](cat.gif)
