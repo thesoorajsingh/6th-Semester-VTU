@@ -1,0 +1,146 @@
+package com.example.callandsave;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.Manifest;
+import android.annotation.SuppressLint;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
+import android.os.Build;
+import android.os.Bundle;
+import android.provider.ContactsContract;
+import android.text.Editable;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+
+import com.example.callandsavecontactapplication.R;
+
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+    Button one, two, three, four, five, six, seven, eight, nine, zero, call, save, del, hash, star;
+    EditText phone;
+    String phno;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        one = findViewById(R.id.btn1);
+        two = findViewById(R.id.btn2);
+        three = findViewById(R.id.btn3);
+        four = findViewById(R.id.btn4);
+        five = findViewById(R.id.btn5);
+        six = findViewById(R.id.btn6);
+        seven = findViewById(R.id.btn7);
+        eight = findViewById(R.id.btn8);
+        nine = findViewById(R.id.btn9);
+        zero = findViewById(R.id.btn0);
+        del = findViewById(R.id.btndel);
+        star = findViewById(R.id.btnstar);
+        hash = findViewById(R.id.btnhash);
+        call = findViewById(R.id.btncall);
+        save = findViewById(R.id.btnsave);
+
+        phone = findViewById(R.id.phno);
+
+        one.setOnClickListener(this);
+        two.setOnClickListener(this);
+        three.setOnClickListener(this);
+        four.setOnClickListener(this);
+        five.setOnClickListener(this);
+        six.setOnClickListener(this);
+        seven.setOnClickListener(this);
+        eight.setOnClickListener(this);
+        nine.setOnClickListener(this);
+        zero.setOnClickListener(this);
+        del.setOnClickListener(this);
+        star.setOnClickListener(this);
+        hash.setOnClickListener(this);
+        call.setOnClickListener(this);
+        save.setOnClickListener(this);
+    }
+
+    @SuppressLint("NonConstantResourceId")
+    @Override
+    public void onClick(View v) {
+        Editable str = phone.getText();
+        switch (v.getId())
+        {
+            case R.id.btn1:
+                str = str.append(one.getText());
+                phone.setText(str);
+                break;
+            case R.id.btn2:
+                str = str.append(two.getText());
+                phone.setText(str);
+                break;
+            case R.id.btn3:
+                str = str.append(three.getText());
+                phone.setText(str);
+                break;
+            case R.id.btn4:
+                str = str.append(four.getText());
+                phone.setText(str);
+                break;
+            case R.id.btn5:
+                str = str.append(five.getText());
+                phone.setText(str);
+                break;
+            case R.id.btn6:
+                str = str.append(six.getText());
+                phone.setText(str);
+                break;
+            case R.id.btn7:
+                str = str.append(seven.getText());
+                phone.setText(str);
+                break;
+            case R.id.btn8:
+                str = str.append(eight.getText());
+                phone.setText(str);
+                break;
+            case R.id.btn9:
+                str = str.append(nine.getText());
+                phone.setText(str);
+                break;
+            case R.id.btn0:
+                str = str.append(zero.getText());
+                phone.setText(str);
+                break;
+            case R.id.btnstar:
+                str = str.append(star.getText());
+                phone.setText(str);
+                break;
+            case R.id.btnhash:
+                str = str.append(hash.getText());
+                phone.setText(str);
+                break;
+
+            //writing logic with intent
+            case R.id.btndel:
+                //subsequence specifies how many characters in the substring to extract it
+                str = (Editable) str.subSequence(0, str.length()-1);
+                phone.setText(str);
+                break;
+            case R.id.btncall:
+                //manually checking whether permissions granted or not
+                //checking version compatibility?
+                if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && checkSelfPermission(Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED){
+                    requestPermissions(new String[]{Manifest.permission.CALL_PHONE}, 1);
+                }
+                else{
+                    phno = phone.getText().toString();
+                    Intent intentcall = new Intent(Intent.ACTION_CALL);//creating intent
+                    intentcall.setData(Uri.parse("tel:"+phno));//setting data
+                    startActivity(intentcall);
+                }
+                break;
+            case R.id.btnsave:
+                String contact = phone.getText().toString();
+                Intent intentsave = new Intent(ContactsContract.Intents.SHOW_OR_CREATE_CONTACT, Uri.parse("tel:"+contact));
+                startActivity(intentsave);
+                break;
+        }
+    }
+}

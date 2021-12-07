@@ -1,0 +1,59 @@
+package com.example.my_wallpaper;
+
+import android.os.Bundle;
+import android.os.Handler;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.content.ContextCompat;
+
+import java.util.Random;
+
+public class MainActivity extends AppCompatActivity {
+
+    Button btnChange;
+    ConstraintLayout constraintLayout;
+    TextView tvHome;
+
+    int[] wallpapers;
+    Handler handler;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        btnChange = findViewById(R.id.btnWallchange);
+        constraintLayout = findViewById(R.id.constLayout);
+        tvHome = findViewById(R.id.txtView);
+        handler = new Handler();
+
+
+
+        wallpapers = new int[]{R.drawable.w2, R.drawable.w1, R.drawable.w3};
+
+        btnChange.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                handler.postDelayed(runnable, 0);
+                btnChange.setVisibility(View.GONE);
+                tvHome.setVisibility(View.GONE);
+
+            }
+        });
+    }
+
+    public Runnable runnable = new Runnable() {
+        @Override
+        public void run() {
+            int arrLength = wallpapers.length;
+            Random random = new Random();
+            int randNum = random.nextInt(arrLength);
+            constraintLayout.setBackground(ContextCompat.getDrawable(getApplicationContext(), wallpapers[randNum]));
+            handler.postDelayed(this, 3000);
+        }
+    };
+}

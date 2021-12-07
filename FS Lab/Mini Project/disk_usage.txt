@@ -1,0 +1,7 @@
+Partitions on Drive:
+Drive: C:\
+  File system type: NTFS
+  Total Size: 458.35GB 
+  Used:       180.80GB  
+  Free:       277.56GB  
+  Percentage: 39.4 

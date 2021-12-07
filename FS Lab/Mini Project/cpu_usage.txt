@@ -1,0 +1,14 @@
+Logical/Total Core Count: 8
+Physical Core Count: 4
+Maximum Frequency:2496.0 MHz
+Minimum Frequency:0.0 MHz
+Current Frequency: 2496.0 MHz
+Core0:34.5%
+Core1:28.0%
+Core2:31.6%
+Core3:26.1%
+Core4:28.6%
+Core5:20.5%
+Core6:26.3%
+Core7:28.7%
+Total CPU Usage:28.1

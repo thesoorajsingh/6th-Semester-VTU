@@ -1,0 +1,8 @@
+Total Memory:    7.84GB
+Available Memory:1.33GB
+Used Memory:     6.52GB
+exitPercentage:      83.1
+Total Memory:    15.09GB
+Available Memory:4.59GB
+Used Memory:     10.50GB
+Percentage:      69.6
